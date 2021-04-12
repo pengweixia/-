@@ -29,19 +29,19 @@ Page({
     let type = this.data.type
 
     wx.cloud.database().collection('user').where({
-      username: '111'
+      username: username
     }).get({
       success(res) {
-        let usr = res
+        let usr = res.data[0]
         console.log(usr)
         if (password == usr.password) {
-          // wx.showToast({
-          //   title: '登录成功',
-          // })
+          wx.showToast({
+            title: '登录成功',
+          })
           // wx.navigateTo({
           //   url: '/pages/homepage/homepage',
           // })
-          //wx.setStorageSync('usr', usr)
+          wx.setStorageSync('usr', usr)
           console.log("success")
         }
         else {
