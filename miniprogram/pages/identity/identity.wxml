@@ -1,0 +1,33 @@
+<van-cell-group>
+  <van-field
+    value="{{ username }}"
+    label="账户"
+    placeholder="请输入用户名"
+    required
+    border="{{ false }}"
+    bind:change="getUsr"
+  />
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="密码"
+    placeholder="请输入密码"
+    required
+    border="{{ false }}"
+    bind:change="getPwd"
+  />
+</van-cell-group>
+
+
+<van-radio-group value="{{ radio }}" bind:change="getType">
+  <van-cell-group>
+  <van-cell title="worker" clickable data-name="worker">
+      <van-radio slot="right-icon" name="worker">我是义工</van-radio>
+    </van-cell>
+    <van-cell title="user" clickable data-name="worker">
+      <van-radio slot="right-icon" name="user">我是普通用户</van-radio>
+    </van-cell>
+  </van-cell-group>
+</van-radio-group>
+
+<van-button type="primary" size="large" bind:click="onLogin">登录</van-button>
