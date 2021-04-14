@@ -1,6 +1,7 @@
 Page({
   data: {
-    type: '',
+    radio: 'user',
+    type: 'user',
     username: '',
     password: ''
   },
@@ -20,6 +21,7 @@ Page({
   getType(event) {
     this.setData({
       type: event.detail,
+      radio: event.detail,
     });
   },
 
@@ -28,7 +30,7 @@ Page({
     let password = this.data.password
     let type = this.data.type
 
-    wx.cloud.database().collection('user').where({
+    wx.cloud.database().collection(type).where({
       username: username
     }).get({
       success(res) {
@@ -38,15 +40,15 @@ Page({
           wx.showToast({
             title: '登录成功',
           })
-          // wx.navigateTo({
-          //   url: '/pages/homepage/homepage',
-          // })
+          wx.navigateTo({
+            url: '/pages/homepage/homepage?type='+type,
+          })
           wx.setStorageSync('usr', usr)
           console.log("success")
         }
         else {
           wx.showToast({
-            title: '登录失败',
+            title: '账户与密码错误',
           })
           console.log("fail")
         }
