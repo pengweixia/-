@@ -1,0 +1,14 @@
+<View class="main">
+  <View class="tit"></View>
+  <View class="title"><Text>用户身份认证</Text></View>
+  <View class="parent">
+    <View class="left" bindtap="onUserLogin">
+        <View class="user"><Text>我是普通用户</Text></View>
+    </View>
+    <View class="right" bindtap="onWorkerLogin">
+        <View class="volunteer"><Text>我是义工</Text></View>
+    </View>
+  </View> 
+</View>
+
+

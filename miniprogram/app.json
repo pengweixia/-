@@ -1,7 +1,11 @@
 {
-  "pages": [
+  "pages": [   
+    
+    "pages/login/login",
     "pages/identity/identity",
-    "pages/homepage/homepage"
+    "pages/homepage/homepage",
+    "pages/index/index"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

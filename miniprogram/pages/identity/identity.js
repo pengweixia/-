@@ -1,27 +1,35 @@
 Page({
   data: {
-    radio: 'user',
-    type: 'user',
+    type: null,
     username: '',
     password: ''
   },
 
-  getUsr(event) {
+  username:function(e){
     this.setData({
-      username: event.detail,
+      username: e.detail.value
+    });
+  },
+  password:function(e){
+    this.setData({
+      password: e.detail.value
     });
   },
 
-  getPwd(event) {
+  changePwd:function(){
+    this.data.defaultType= !this.data.defaultType
+    this.data.passwordType= !this.data.passwordType
     this.setData({
-      password: event.detail,
-    });
+      defaultType: this.data.defaultType,
+      passwordType: this.data.passwordType
+    })
   },
-  
-  getType(event) {
+
+  onLoad (query) {
+    // 这里的 query 将是 url 中，问号(?) 后面的键值对组成的一个对象
+    // query = {type: 'worker'}
     this.setData({
-      type: event.detail,
-      radio: event.detail,
+      type: query.type
     });
   },
 
@@ -37,11 +45,13 @@ Page({
         let usr = res.data[0]
         console.log(usr)
         if (password == usr.password) {
+          var app = getApp()
+          app.globalData.username = username
           wx.showToast({
             title: '登录成功',
           })
           wx.navigateTo({
-            url: '/pages/homepage/homepage?type='+type,
+            url: '/pages/homepage/homepage',
           })
           wx.setStorageSync('usr', usr)
           console.log("success")

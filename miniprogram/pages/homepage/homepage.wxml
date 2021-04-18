@@ -1,4 +1,14 @@
-<view > 
-{{type}} 
-
+<view class = "container">
+    <open-data type="userAvatarUrl" class = "img"></open-data>
+    <view class="right">
+      <view style="margin-bottom:10rpx">姓名：彭伟霞</view>      
+      <view style="margin-bottom:10rpx">身份：普通用户</view>
+      <view style="margin-bottom:10rpx">等级：1</view>
+      <view>快速接单券：0</view>
+    </view>
+    <view class="main">
+      <view class="fadan" style="background-color:#f8c400;">发单</view>
+      <view class="fadan" style="background-color:#3d3d5f;">查看订单</view>
+      <view wx:if="{{num===1}}" class="fadan" style="background-color:#07883f;">接单</view>
+    </view>    
 </view>

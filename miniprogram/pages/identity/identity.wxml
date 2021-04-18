@@ -1,6 +1,4 @@
-<view class="identityMain"> 
-  <!-- <image src="/miniprogram/images/logo.png" class='in-image'>
-  </image> -->
+<!-- <view class="identityMain"> 
   <van-cell-group class="fieldInput">
     <van-field
       value="{{ username }}"
@@ -20,11 +18,29 @@
       bind:change="getPwd"
     />
   </van-cell-group>
-
-  <van-radio-group value="{{ radio }}" bind:change="getType" direction="horizontal" class="radioInput">
-    <van-radio name="worker" checked-color="#1989fa">我是义工</van-radio>
-    <van-radio name="user">我是普通用户</van-radio>
-  </van-radio-group>
-
   <van-button type="primary" size="normal" bind:click="onLogin" class="buttonInput">登录</van-button>
+</view> -->
+
+<view class="main">
+    <view id="img">
+      <image src="../../images/boat.jpg" class="img"/> 
+    </view>
+    <view class="user">
+        <van-icon name="contact" custom-class="person" size="30px"/>
+        <input bindinput="username" type="text" placeholder="*请输入学号"/>
+    </view>
+    <view class="pwd">
+        <van-icon name="browsing-history-o" custom-class="person" size="30px"/>
+        <input bindinput="password" type="password" password="{{ isPassword }}" value="{{password}}" placeholder="*请输入密码"/>
+    </view>  
+   
+    <view class=".login">
+      <button class="btn" bindtap="onLogin">登录</button>
+    </view>
+
+    <view class="args">
+      完成登录即代表您已同意
+      <navigator url="../argument/argument" >用户使用协议</navigator>
+    </view>
 </view>
+
