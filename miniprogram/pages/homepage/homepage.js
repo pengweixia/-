@@ -1,7 +1,26 @@
 Page({
   data: {
     type: null,
-    num:1
+    name:'',
+    identity:''
+  },
+
+  toSend(){
+    wx.navigateTo({
+      url: '/pages/send/send',
+    })
+  },
+
+  toLook(){
+    wx.navigateTo({
+      url: '/pages/look/look',
+    })
+  },
+
+  toReceive(){
+    wx.navigateTo({
+      url: '/pages/receive/receive',
+    })
   },
 
   onLoad (query) {
@@ -11,22 +30,20 @@ Page({
     username = app.globalData.username
     type = app.globalData.type  
     this.setData({
-      type: type
-    })
-    wx.cloud.callFunction({
-      name:'userStatus',
-      data:{
-        type:type,
-        username:username
-      },
-      success(res){
-        console.log("请求云函数成功",res)
-        
-        },
-      fail(res) {
-         console.log("请求云函数失败", res)
-         }
-    })
+      type: type,
+      name:query.name
+    });
+    if(type==='worker'){
+      this.setData({
+        identity : '义工'
+      })
+    }else{
+      this.setData({
+        identity : '普通用户'
+      })
+    }
+    
 
-  }
+  },
+
 });

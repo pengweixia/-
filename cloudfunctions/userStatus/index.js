@@ -15,15 +15,19 @@ const $ = _.aggregate
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
-  return await db.collection(event.type).aggregate()
-  .lookup({
-    from: 'status',
-      localField: 'username',
-      foreignField: 'Sno',
-      as: 'statusList',
-  })
-  .match({
-    username:event.username
-  })
-  .end()
+  return cloud.database().collection("tb_approval").aggregate() //选择我的审批表
+          .lookup({
+            from:"tb_user", //把tb_user用户表关联上
+            localField: 'u_account', //审批表的关联字段
+            foreignField: 'u_account', //用户表的关联字段
+            as: 'uapproval' //匹配的结果作为uapproval相当于起个别名
+          }).end({
+            success:function(res){
+              return res;
+            },
+            fail(error) {
+              return error;
+            }
+          })
+
 }

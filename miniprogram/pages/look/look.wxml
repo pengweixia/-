@@ -1,0 +1,57 @@
+<!--pages/look/look.wxml-->
+<view class="body" wx:if="{{type=='user'}}">
+    <view>
+        <modal title="接单" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+            投诉原因：<textarea bindinput="complainContent"/>
+        </modal>
+    </view> 
+    <view class = "jie" wx:for="{{arrayb}}" wx:key="unique">                    
+        <view> 取单号：{{item.Ono}}</view>
+        <view> 取件地址：{{item.ReceiveAddress}}</view>
+        <view class="btn">
+            <button class="btn1" bindtap="finish1">确认收货</button>
+            <button class="btn1" disabled="{{item.status==1 ? true : false}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
+            <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="complain">投诉</button>
+            <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="showModal">评价</button>                    
+        </view>                        
+    </view>
+</view>
+<view class="body" wx:if="{{type=='worker'}}">  
+    <view class="swiper-tab">
+        <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">全部接单</view>
+        <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">全部发单</view>
+    </view>
+    <view>
+        <modal title="接单" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+            投诉原因：<textarea bindinput="complainContent"/>
+        </modal>
+    </view> 
+    <swiper current="{{currentTab}}" duration="300" bindchange="swiperTab" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+    <!-- 全部接单详情 -->
+        <swiper-item>
+            <view class = "jie" wx:for="{{arraya}}" wx:key="unique">                    
+                <view> 取单号：{{item.Ono}}</view>
+                <view> 取件地址：{{item.ReceiveAddress}}</view>
+                <view class="btn">
+                    <button  bindtap="finish">完成订单</button>
+                    <button  disabled="{{flag==1 ? true : false}}" bindtap="complain">投诉</button>
+                    <button  disabled="{{flag==1 ? true : false}}" bindtap="showModal">评价</button>
+                </view>                        
+            </view>
+        </swiper-item>
+
+    <!-- 全部发单详情 -->
+        <swiper-item>
+            <view class = "jie" wx:for="{{arrayb}}" wx:key="unique">                    
+                <view> 取单号：{{item.Ono}}</view>
+                <view> 取件地址：{{item.ReceiveAddress}}</view>
+                <view class="btn">
+                    <button class="btn1" bindtap="finish1">确认收货</button>
+                    <button class="btn1" disabled="{{item.status==1 ? true : false}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
+                    <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="complain">投诉</button>
+                    <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="showModal">评价</button>                    
+                </view>                        
+            </view>
+        </swiper-item>
+    </swiper>
+</view>

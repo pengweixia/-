@@ -4,7 +4,11 @@
     "pages/login/login",
     "pages/identity/identity",
     "pages/homepage/homepage",
-    "pages/index/index"
+    "pages/receive/receive",
+    "pages/look/look",
+    "pages/send/send"
+    
+    
     
   ],
   "window": {

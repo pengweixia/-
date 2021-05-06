@@ -39,10 +39,10 @@ Page({
     let type = this.data.type
 
     wx.cloud.database().collection(type).where({
-      username: username
+      Sno: username
     }).get({
       success(res) {
-        let usr = res.data[0]
+        let usr = res.data[0],name = usr.name
         console.log(usr)
         if (password == usr.password) {
           var app = getApp()
@@ -51,7 +51,7 @@ Page({
             title: '登录成功',
           })
           wx.navigateTo({
-            url: '/pages/homepage/homepage',
+            url: '/pages/homepage/homepage?name='+name,
           })
           wx.setStorageSync('usr', usr)
           console.log("success")

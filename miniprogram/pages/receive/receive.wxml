@@ -1,0 +1,25 @@
+<!--pages/receive/receive.wxml-->
+<view class="body">    
+    <view wx:if="{{flag == 1}}" class="number">
+        <van-collapse accordion value="{{ activeName }}" bind:change="onChange"  bind:open="onOpen"  bind:close="onClose">
+            <view wx:for="{{array}}" wx:key="unique">
+                <van-collapse-item title="取件地址：{{item.ReceiveAddress}}" name="{{item.Ono}}" class="con">
+                <view class=".txt">
+                    <view> 取单号：{{item.Ono}}</view>
+                    <view> 收件地址：{{item.SendAddress}}</view>
+                    <view> 手机号码：{{item.Sphone}}</view>
+                    <view> 备注：{{item.Remark}}</view>
+                    <button class="btn"  data-status="{{item.status}}" data-id="{{item._id}}" data-sno="{{item.Sno}}" data-ono="{{item.Ono}}" data-receiveAddress="{{item.ReceiveAddress}}" bindtap="receive">我要接单</button>
+                </view>
+                </van-collapse-item>
+            </view>
+        </van-collapse>
+    </view>
+    <view wx:if="{{flag == 0}}" class="content" >
+        <view class="img">
+            <image src="../../images/information.jpg" />  
+        </view>
+    </view>
+</view>
+  
+  
