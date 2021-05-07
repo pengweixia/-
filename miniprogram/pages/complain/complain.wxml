@@ -1,0 +1,11 @@
+<!--pages/complain/complain.wxml-->
+<view class = "jie" wx:for="{{arrayb}}" wx:key="unique">                    
+        <view> 投诉单号：{{item.Ono}}</view>
+        <view> 投诉人：{{item.complainer}}</view>
+        <view> 被投诉人：{{item.beComplained}}</view>
+        <view> 投诉理由：{{item.comlpainReason}}</view>                
+        <view class="btn">            
+            <button class="btn1"  data-id="{{item._id}}" bindtap="chedan">发单人过失</button>
+            <button class="btn1"  data-id="{{item._id}}" bindtap="chedan">接单人过失</button>            
+        </view>                        
+</view>

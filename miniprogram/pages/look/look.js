@@ -9,13 +9,14 @@ Page({
     currentTab: 0,
     clientHeight: 0,
     activeName: '1',
-    flag:1,
-    flag1:1,
     //存放接单跟发单信息
     arraya: [],
     arrayb: [],
     modalHidden: true,
-    complainContent: ''
+    complainContent: '',
+    beComplained:'',
+    Ono:'',
+    id:''
   },
 
   complainContent(e){
@@ -59,6 +60,15 @@ Page({
     username = app.globalData.username
 
     //全部接单
+    that.initJieDanList(username)
+
+    //全部发单
+    that.initFaDanList(username)
+    
+  },
+
+  initJieDanList(username){
+    var that = this
     const db = wx.cloud.database()
     db.collection('receive').where({
       Sno: username
@@ -74,10 +84,12 @@ Page({
         console.log("获取数据失败", res)
       }
     })
+  },
 
-    //全部发单
-    const db1 = wx.cloud.database()
-    db1.collection('send').where({
+  initFaDanList(username){
+    var that = this
+    const db = wx.cloud.database()
+    db.collection('send').where({
       Sno: username
     }).get({
       success(res) {    
@@ -158,19 +170,44 @@ Page({
   },
 
   //完成订单
-  finish(){
-    var that = this
-    that.setData({
-      flag:0
+  finish(e){
+    var id = e.target.dataset.id
+    const db = wx.cloud.database()
+    db.collection('receive').doc(id).update({
+      data: {
+        status: 1
+      },
+      success: function (res) {
+        console.log("修改成功", res)
+      }
     })
   },
 
   //确认收货
-  finish1(){
-    var that = this
-    that.setData({
-      flag1:0
-    })
+  finish1(e){
+    if(e.target.dataset.status == 0){
+      wx.showModal({
+        title:'提示',
+        content:'该单未被接哦~请耐心等待~',
+        showCancel:false,
+        success(res){}
+      })
+    }else{
+      var app = getApp(),username=''
+      username = app.globalData.username
+      var that = this
+      var id = e.target.dataset.id
+      const db = wx.cloud.database()
+      db.collection('send').doc(id).update({
+        data: {
+          status: 2
+        },
+        success: function (res) {
+          console.log("修改成功", res)
+          that.initFaDanList(username)
+        }
+      })
+    }    
   },
 
   //撤单
@@ -214,15 +251,85 @@ Page({
   },
 
   //投诉
-  complain(){
-    this.setData({
-      modalHidden:false
-    })
+  complain(e){
+    if(e.target.dataset.status<3){
+      let app =  getApp(),Sno
+      Sno = app.globalData.username
+      var beComplained
+      if(Sno == e.target.dataset.sno){
+        beComplained = e.target.dataset.sendsno
+      }else{
+        beComplained = e.target.dataset.sno
+      }
+      var Ono = e.target.dataset.ono
+      var id = e.target.dataset.id
+      this.setData({
+        modalHidden:false,
+        beComplained : beComplained,   
+        Ono: Ono,
+        id:id
+      })
+    }
+    
   },
 
   modalBindcancel:function(){
     this.setData({
     modalHidden:!this.data.modalHidden,
    })
-  }
+  },
+
+  modalBindaconfirm:function(){
+    var that = this
+    let app =  getApp(),Sno
+    Sno = app.globalData.username
+    const db = wx.cloud.database()
+    db.collection('complainList').add({
+    data: {
+      beComplained : that.data.beComplained,   
+      complainer : Sno,
+      Ono: that.data.Ono,
+      comlpainReason: that.data.complainContent,         
+      status:0
+    },
+    success(){
+      that.setData({
+        modalHidden:!that.data.modalHidden,
+        complainContent: ''
+      })
+      wx.showModal({
+        title:'提示',
+        content:'投诉成功',
+        showCancel:false,
+        success (res) {
+          if (res.confirm) {  
+            const db3 = wx.cloud.database()
+            var id = that.data.id
+            db3.collection('receive').doc(id).update({
+              data: {
+                status: 3
+              },
+              success: function (res) {
+                that.initFaDanList()
+                that.initJieDanList()
+                console.log("修改成功", res)
+              }
+            })   
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })                
+    },
+    fail(res){
+      console.log(33333333333333,res)
+      wx.showModal({
+          title:'提示',
+          content:'网络不在状态！',
+          showCancel:false
+      })
+    }
+    })      
+  },
+  
 })

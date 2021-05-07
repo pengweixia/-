@@ -51,7 +51,7 @@ Page({
         content:'接单失败原因：该单已被接！',
         showCancel:false,
         success(res){
-          initList()
+          that.initList()
         }
       })
     }

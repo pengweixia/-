@@ -50,7 +50,7 @@ Page({
           wx.showToast({
             title: '登录成功',
           })
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/homepage/homepage?name='+name,
           })
           wx.setStorageSync('usr', usr)

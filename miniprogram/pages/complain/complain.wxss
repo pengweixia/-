@@ -1,0 +1,28 @@
+/* pages/complain/complain.wxss */
+.jie{
+  width:92%;
+  margin:0 auto;
+  margin-top:0.5rem;
+  background:white;
+  padding:0.5rem;
+  font:1rem;
+  border:1rpx solid white;
+  border-radius:1rem;
+}
+
+.btn{ 
+  width: 98%;
+  display:flex;
+  justify-content:space-around;
+  font:5rpx;  
+}
+
+.btn button{
+  margin-top:1rem;
+  width: 30%;
+  height: 55rpx;
+  background-color: #0082cf;
+  border-radius: 2rem;
+  color: white;
+  line-height: 55rpx;
+}

@@ -1,7 +1,7 @@
 <!--pages/look/look.wxml-->
 <view class="body" wx:if="{{type=='user'}}">
     <view>
-        <modal title="接单" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+        <modal title="接单" hidden="{{modalHidden}}"  confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
             投诉原因：<textarea bindinput="complainContent"/>
         </modal>
     </view> 
@@ -9,10 +9,10 @@
         <view> 取单号：{{item.Ono}}</view>
         <view> 取件地址：{{item.ReceiveAddress}}</view>
         <view class="btn">
-            <button class="btn1" bindtap="finish1">确认收货</button>
-            <button class="btn1" disabled="{{item.status==1 ? true : false}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
-            <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="complain">投诉</button>
-            <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="showModal">评价</button>                    
+            <button class="btn1" bindtap="finish1" data-id="{{item._id}}" data-status="{{item.status}}" disabled="{{0<=item.status<=1 ? false : true}}">确认收货</button>
+            <button class="btn1" disabled="{{item.status==0 ? false : true}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
+            <button class="btn1" disabled="{{item.status<6&&item.status>1&&item.status!=4 ? false : true}}" data-sno="{{item.Sno}}" data-status="{{item.status}}" data-sendSno="{{item.sendSno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="complain">{{item.status >2 ? '撤投诉' : '投诉'}}</button>
+            <button class="btn1" disabled="{{item.status<6&&item.status>1 ? false : true}}" data-sno="{{item.Sno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="showModal">{{item.status >4 ? '撤评价' : '评价'}}</button>                    
         </view>                        
     </view>
 </view>
@@ -33,9 +33,9 @@
                 <view> 取单号：{{item.Ono}}</view>
                 <view> 取件地址：{{item.ReceiveAddress}}</view>
                 <view class="btn">
-                    <button  bindtap="finish">完成订单</button>
-                    <button  disabled="{{flag==1 ? true : false}}" bindtap="complain">投诉</button>
-                    <button  disabled="{{flag==1 ? true : false}}" bindtap="showModal">评价</button>
+                    <button  bindtap="finish" data-id="{{item._id}}" disabled="{{item.status>0 ? true : false}}">完成订单</button>
+                    <button  disabled="{{item.status <1 || item.status==4 ? true : false}}" data-sno="{{item.Sno}}" data-status="{{item.status}}" data-sendSno="{{item.sendSno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="complain">{{item.status >2 ? '撤投诉' : '投诉'}}</button>
+                    <button  disabled="{{item.status <1 || item.status==6 ? true : false}}" data-sno="{{item.Sno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="showModal">{{item.status >4 ? '撤评价' : '评价'}}</button>
                 </view>                        
             </view>
         </swiper-item>
@@ -46,10 +46,10 @@
                 <view> 取单号：{{item.Ono}}</view>
                 <view> 取件地址：{{item.ReceiveAddress}}</view>
                 <view class="btn">
-                    <button class="btn1" bindtap="finish1">确认收货</button>
-                    <button class="btn1" disabled="{{item.status==1 ? true : false}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
-                    <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="complain">投诉</button>
-                    <button class="btn1" disabled="{{flag1==1 ? true : false}}" bindtap="showModal">评价</button>                    
+                    <button class="btn1" bindtap="finish1" data-status="{{item.status}}" data-id="{{item._id}}" disabled="{{item.status<2 ? false : true}}">确认收货</button>
+                    <button class="btn1" disabled="{{item.status==0 ? false : true}}" data-id="{{item._id}}" bindtap="chedan">撤单</button>
+                    <button class="btn1" disabled="{{item.status<6&&item.status>1&&item.status!=4 ? false : true}}" data-sno="{{item.Sno}}" data-status="{{item.status}}" data-sendSno="{{item.sendSno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="complain">{{item.status >2 ? '撤投诉' : '投诉'}}</button>
+                    <button class="btn1" disabled="{{item.status<6&&item.status>1 ? false : true}}" data-sno="{{item.Sno}}" data-ono="{{item.Ono}}" data-id="{{item._id}}" bindtap="showModal">{{item.status>4 ? '撤评价' : '评价'}}</button>                    
                 </view>                        
             </view>
         </swiper-item>
