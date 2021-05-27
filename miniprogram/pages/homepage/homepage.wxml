@@ -3,8 +3,8 @@
     <view class="right">
       <view style="margin-bottom:10rpx">姓名：{{name}}</view>      
       <view style="margin-bottom:10rpx">身份：{{identity}}</view>
-      <view style="margin-bottom:10rpx">等级：1</view>
-      <view>快速接单券：0</view>
+      <view style="margin-bottom:10rpx">等级：{{level}}</view>
+      <view>快速接单券：{{rateCount}}</view>
     </view>
     <view class="main">
       <view class="fadan" style="background-color:#f8c400;" bindtap="toSend">发单</view>

@@ -1,0 +1,43 @@
+<!--pages/register/register.wxml-->
+<view class="main">
+    
+    <view class="user">
+        <van-icon name="contact" custom-class="person" size="30px"/>
+        <input bindinput="username" type="text"  value="{{username}}" placeholder="*请输入帐号（学号）"/>
+    </view>
+    <view class="pwd" style = "margin-bottom: 50rpx;">
+        <van-icon name="fire-o" custom-class="person" size="30px"/>
+        <input bindinput="name" type="text" password="{{ isPassword }}" value="{{name}}" placeholder="*请输入姓名"/>
+    </view> 
+    <view class="pwd" style = "margin-bottom: 50rpx;">
+        <van-icon name="browsing-history-o" custom-class="person" size="30px"/>
+        <input bindinput="password" type="password" password="{{ isPassword }}" value="{{password}}" placeholder="*请输入密码"/>
+    </view> 
+    <view class="pwd" style = "margin-bottom: 50rpx;">
+        <van-icon name="more-o" custom-class="person" size="30px"/>
+        <input bindinput="Confirmpassword" type="password" password="{{ isPassword }}" value="{{Confirmpassword}}" placeholder="*再一次输入，确认密码"/>
+    </view>
+    <view class="pwd" style = "margin-bottom: 50rpx;">
+        <van-icon name="phone-circle-o" custom-class="person" size="30px"/>
+        <input bindinput="phone" type="text" password="{{ isPassword }}" value="{{phone}}" placeholder="*请输入联系方式"/>
+    </view>
+    <view  style = "width: 80%; margin: 0 auto; margin-bottom: 100rpx;">
+        <van-radio-group
+        value="{{ radio }}"
+        bind:change="onChange"
+        direction="horizontal"
+        >
+            <van-radio name="男">男</van-radio>
+            <van-radio name="女">女</van-radio>
+        </van-radio-group>
+    </view> 
+
+   
+    <view class=".login">
+      <button class="btn" bindtap="onRegister">注册</button>
+    </view>
+    <view class="args">
+      <navigator url="../identity/identity" >注册完成，去登陆</navigator>
+    </view>
+</view>
+

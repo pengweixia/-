@@ -68,3 +68,9 @@
   width: 100%;
   height: 100vh;
 }
+.admin{
+  position:absolute;
+  top: 80%;
+  right:5%;
+  color: #1cd66c;
+}

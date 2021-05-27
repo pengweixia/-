@@ -1,5 +1,13 @@
 <!--pages/send/send.wxml-->
 <view class="box">
+  <modal title="义工等级从上至下排列" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+      <view wx:for="{{arr}}" wx:key="unique"> 
+        <view class = "jie" >
+          <view style="height: 55rpx">义工：{{item.Sno}}</view>
+          <button class = "btn1" bindtap="zhiBtn" data-sno="{{item.Sno}}">请他接单</button>
+        </view>     
+      </view>           
+  </modal>
   <van-notice-bar
     left-icon="bullhorn-o"
     backgroundColor="#f2f2f2"

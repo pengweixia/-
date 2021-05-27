@@ -9,6 +9,10 @@
         <View class="volunteer"><Text>我是义工</Text></View>
     </View>
   </View> 
+  <View class="admin" bindtap="onAdminLogin">
+    管理员身份登录
+  </View>
+    
 </View>
 
 

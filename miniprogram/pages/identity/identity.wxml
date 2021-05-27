@@ -27,7 +27,7 @@
     </view>
     <view class="user">
         <van-icon name="contact" custom-class="person" size="30px"/>
-        <input bindinput="username" type="text" placeholder="*请输入学号"/>
+        <input bindinput="username" type="text" value = "{{username}}" placeholder="*请输入帐号"/>
     </view>
     <view class="pwd">
         <van-icon name="browsing-history-o" custom-class="person" size="30px"/>
@@ -39,8 +39,7 @@
     </view>
 
     <view class="args">
-      完成登录即代表您已同意
-      <navigator url="../argument/argument" >用户使用协议</navigator>
+      <navigator url="../register/register" >还没有账号，去注册</navigator>
     </view>
 </view>
 

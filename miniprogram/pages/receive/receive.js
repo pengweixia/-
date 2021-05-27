@@ -9,6 +9,39 @@ Page({
     flag: 0
   },
 
+  addStar(){
+    var app = getApp(),Sno,haveStar,that = this
+    Sno = app.globalData.username
+    const db = wx.cloud.database()
+    db.collection('rate').where({Sno:Sno}).get({
+      success(res) {    
+        if(res.data.length){
+          haveStar = res.data[0].haveStar+3
+          that.updateStar(haveStar)
+        }                 
+      },
+      fail(res) {
+        console.log("获取数据失败", res)
+      }
+    })
+    
+  },
+
+  updateStar(haveStar){
+    var app = getApp(),Sno
+    Sno = app.globalData.username
+    const db = wx.cloud.database()
+    db.collection('rate').where({Sno:Sno}).update({
+      data: {
+        haveStar: haveStar
+      },
+      success: function (res) {
+        console.log('修改成功')
+      }
+    })
+  },
+
+
   initList(){
     var that = this
     const db = wx.cloud.database()
@@ -71,7 +104,8 @@ Page({
         ReceiveAddress: e.target.dataset.receiveaddress,
         sendSno : e.target.dataset.sno,   
         Sno : Sno,        
-        status:0
+        status:0,
+        rateStatus:0
       },
       success(res){
         console.log(2222222222,res)
@@ -83,6 +117,7 @@ Page({
             if (res.confirm) {
               console.log('用户点击确定')
               that.initList() 
+              that.addStar()
             } else if (res.cancel) {
               console.log('用户点击取消')
             }

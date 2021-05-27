@@ -82,5 +82,14 @@ Page({
     wx.navigateTo({
       url: '/pages/identity/identity?type='+type,
     })
+  },
+
+  onAdminLogin(){
+    var app = getApp(), type
+    app.globalData.type = 'admin'
+    type = app.globalData.type
+    wx.navigateTo({
+      url: '/pages/identity/identity?type='+type,
+    })
   }
 })

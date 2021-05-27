@@ -16,7 +16,9 @@ App({
 
     this.globalData = {
       type:'user',
-      username:''
+      username:'',
+      rateCount: 0,
+      level: 0
     }
   }
 })

@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "校园微快递",
+  "navigationBarBackgroundColor": "#3d3d5f",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-search": "/miniprogram_npm/vant-weapp/search/index"
+  }
 }

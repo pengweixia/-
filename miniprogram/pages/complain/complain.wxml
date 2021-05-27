@@ -1,11 +1,23 @@
 <!--pages/complain/complain.wxml-->
-<view class = "jie" wx:for="{{arrayb}}" wx:key="unique">                    
+<view>
+    <van-search
+    value="{{ value }}"
+    label="联系方式"
+    placeholder="请输入搜索人账号"
+    use-action-slot
+    bind:change="onChange"
+    bind:search="onSearch"
+    >
+        <view slot="action" bind:tap="onClick">搜索</view>
+    </van-search>
+</view>
+<view class = "jie" wx:for="{{array}}" wx:key="unique">                    
         <view> 投诉单号：{{item.Ono}}</view>
         <view> 投诉人：{{item.complainer}}</view>
         <view> 被投诉人：{{item.beComplained}}</view>
         <view> 投诉理由：{{item.comlpainReason}}</view>                
         <view class="btn">            
-            <button class="btn1"  data-id="{{item._id}}" bindtap="chedan">发单人过失</button>
-            <button class="btn1"  data-id="{{item._id}}" bindtap="chedan">接单人过失</button>            
+            <button class="btn1"  data-id="{{item._id}}" data-complainer="{{item.complainer}}" bindtap="fadan">投诉人过失</button>
+            <button class="btn1"  data-id="{{item._id}}" data-beComplained="{{item.beComplained}}" bindtap="jiedan">被投诉人过失</button>            
         </view>                        
 </view>

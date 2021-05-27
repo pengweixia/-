@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "用户注册",
+  "navigationBarBackgroundColor": "#3d3d5f",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-field": "/miniprogram_npm/vant-weapp/field/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-radio": "/miniprogram_npm/vant-weapp/radio/index",
+    "van-radio-group": "/miniprogram_npm/vant-weapp/radio-group/index"
+  }
+}

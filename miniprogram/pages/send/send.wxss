@@ -42,3 +42,19 @@ swiper image{
 .lun{
   height: 33%;
 }
+
+.btn1{ 
+  width: 40%;
+  height: 55rpx;
+  background-color: #0082cf;
+  border-radius: 2rem;
+  color: white;
+  line-height: 55rpx;
+  font:5rpx;  
+}
+
+.jie{
+  display: flex;
+  justify-content: space-between;
+  margin-top:0.5rem;
+}

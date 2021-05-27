@@ -19,7 +19,7 @@
 
 .btn button{
   margin-top:1rem;
-  width: 30%;
+  width: 43%;
   height: 55rpx;
   background-color: #0082cf;
   border-radius: 2rem;
